@@ -71,9 +71,10 @@ public class HotelDao {
 		return hotels;
 	}
 	
-	public List<String> findAllHotelName(){
-		Query query=em.createQuery("select h.name from Hotel h");
+	
+	public List<Hotel> findApproveHotel(){
+		Query query=em.createQuery("select h from Hotel h where h.status='approved'");
 		return query.getResultList();
 	}
-	
+	 
 }

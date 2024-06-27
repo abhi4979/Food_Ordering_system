@@ -1,5 +1,6 @@
 package com.java.foodmanagmentsystem.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -38,7 +39,10 @@ public class Hotel {
 	@OneToMany
 	@Cascade(CascadeType.ALL)
 	private List<Product> products;
-
+    
+	public Hotel() {
+        this.products = new ArrayList<>(); // Initialize products list
+    }
 	public int getId() {
 		return id;
 	}

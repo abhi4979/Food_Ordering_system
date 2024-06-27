@@ -54,7 +54,7 @@ table {
 }
 
 button {
-    margin-top: auto; /* Push the button to the bottom */
+    margin-bottom:0; /* Push the button to the bottom */
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -62,6 +62,7 @@ button {
     background-color: #007BFF;
     color: white;
     cursor: pointer;
+    
 }
 
 button a {
@@ -104,7 +105,10 @@ h1 {
             </tr>
             <% } %>
         </table>
+        <div>
         <button><a href="addfoodorder" class="btn">Confirm</a></button>
+        <button><a href="fetchallproducts" class="btn">back</a></button>
+        </div>
         <% } else { %>
         <h1>No items are added. Please add at least one item.</h1>
         <% } %>

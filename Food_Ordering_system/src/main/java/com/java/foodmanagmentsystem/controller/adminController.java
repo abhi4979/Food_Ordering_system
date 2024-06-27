@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,63 +15,74 @@ import com.java.foodmanagmentsystem.dao.AdminDao;
 import com.java.foodmanagmentsystem.entity.Admin;
 import com.java.foodmanagmentsystem.entity.Hotel;
 
-
 @Controller
 public class adminController {
-	@Autowired
-	AdminDao dao;
-	
-	@RequestMapping("/addadmin")
-	//
-	public ModelAndView addAdmin() {
-		Admin admin=new Admin();
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("adminobj",admin);
-		mav.setViewName("adminform");
-		return mav;
-	}
-	
-	@RequestMapping("saveadmin")
-	//Handler used to save details into the database
-	public ModelAndView saveAdmin(@ModelAttribute("adminobj") Admin admin,ServletRequest request) {
-		dao.saveAdmin(admin);
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("message", "account Created Successful");
-		mav.setViewName("adminlogin");
-		return mav;
-	}
-	@RequestMapping("/adminloginvalidate")
-	//HAndler used to perform Login validation for admin
-	public ModelAndView loginValidate(ServletRequest request,HttpSession session) {
-		
-		String email=request.getParameter("email");
-		String password=request.getParameter("password");
-		
-		Admin admin=dao.login(email, password);
-		ModelAndView mav=new ModelAndView();
-		
-		if(admin!=null) {
-			mav.setViewName("adminoptions");
-			session.setAttribute("admininfo", admin);
-			return mav;
-		}
-		else {
-			mav.addObject("message","invalid credentials");
-			mav.setViewName("adminlogin");
-			return mav;
-		}
-	}
-	@RequestMapping("/adminlogout")
-	// handler is used to delete the admin data in HttpSession
-	public ModelAndView logout(HttpSession session) {
-		session.invalidate();
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("message", "Logged out successfully");
-		mav.setViewName("adminhome");
-		return mav;
-	}
-	
-	
-	
-
+    
+    @Autowired
+    AdminDao dao;
+    
+    @RequestMapping("/addadmin")
+    public ModelAndView addAdmin() {
+        ModelAndView mav = new ModelAndView();
+        try {
+            Admin admin = new Admin();
+            mav.addObject("adminobj", admin);
+            mav.setViewName("adminform");
+        } catch (Exception e) {
+            mav.addObject("message", "An error occurred: " + e.getMessage());
+            mav.setViewName("errorPage");
+        }
+        return mav;
+    }
+    
+    @RequestMapping("saveadmin")
+    public ModelAndView saveAdmin(@ModelAttribute("adminobj") Admin admin) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            dao.saveAdmin(admin);
+            mav.addObject("message", "Account created successfully");
+            mav.setViewName("adminlogin");
+        } catch (Exception e) {
+            mav.addObject("message", "An error occurred: " + e.getMessage());
+            mav.setViewName("errorPage");
+        }
+        return mav;
+    }
+    
+    @RequestMapping("/adminloginvalidate")
+    public ModelAndView loginValidate(ServletRequest request, HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            
+            Admin admin = dao.login(email, password);
+            
+            if (admin != null) {
+                mav.setViewName("adminoptions");
+                session.setAttribute("admininfo", admin);
+            } else {
+                mav.addObject("message", "Invalid credentials");
+                mav.setViewName("adminlogin");
+            }
+        } catch (Exception e) {
+            mav.addObject("message", "An error occurred: " + e.getMessage());
+            mav.setViewName("errorPage");
+        }
+        return mav;
+    }
+    
+    @RequestMapping("/adminlogout")
+    public ModelAndView logout(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            session.invalidate();
+            mav.addObject("message", "Logged out successfully");
+            mav.setViewName("adminhome");
+        } catch (Exception e) {
+            mav.addObject("message", "An error occurred: " + e.getMessage());
+            mav.setViewName("errorPage");
+        }
+        return mav;
+    }
 }

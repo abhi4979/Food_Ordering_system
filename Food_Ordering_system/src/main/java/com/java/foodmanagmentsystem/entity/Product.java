@@ -14,7 +14,8 @@ public class Product {
 	private String type;
 	private double cost;
 	private int discount;
-
+     
+	
 	public int getId() {
 		return id;
 	}
@@ -43,17 +44,18 @@ public class Product {
 		return cost;
 	}
 
-	public void setCost(double cost) {
-		cost = cost - ((discount * cost) / 100);
-		this.cost = cost;
+	public void setCost(double newCost) {
+	    double discountedCost = newCost - ((this.discount * newCost) / 100.0);
+	    this.cost = discountedCost;
 	}
 
-	public int getDiscount() {
-		return discount;
-	}
 
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
 
 }

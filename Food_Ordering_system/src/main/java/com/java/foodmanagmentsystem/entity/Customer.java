@@ -18,18 +18,9 @@ public class Customer {
 	@Column(unique = true)
 	private String email;
 	private String password;
-	private String confirmpassword;
-	public String getConfirmpassword() {
-		return confirmpassword;
-	}
-
-	public void setConfirmpassword(String confirmpassword) {
-		this.confirmpassword = confirmpassword;
-	}
-
 	private String address;
 	@Column(unique = true)
-	private String mobileNumber;
+	private long mobileNumber;
 
 	@OneToMany
 	private List<FoodOrder> orders;
@@ -74,12 +65,12 @@ public class Customer {
 		this.address = address;
 	}
 
-	public String getMobileNumber() {
+	public long getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
+	public void setMobileNumber(long string) {
+		this.mobileNumber = string;
 	}
 
 	public List<FoodOrder> getOrders() {
