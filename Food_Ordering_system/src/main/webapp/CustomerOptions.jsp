@@ -140,7 +140,7 @@ h1 {
 
 .show {
     display: block;
-}/+
+}
 </style>
 <body>
     <div class="dropdown">

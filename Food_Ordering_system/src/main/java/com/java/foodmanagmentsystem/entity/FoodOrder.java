@@ -17,11 +17,11 @@ public class FoodOrder {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private long mobileNumber;
+	private Long mobileNumber;
 	private String address;
-	private double totalPrice;
+	private Double totalPrice;
 
-	@OneToMany
+	@OneToMany(mappedBy = "foodorder")
 	@Cascade(CascadeType.ALL)
 	private List<Item> items;
 
@@ -41,11 +41,11 @@ public class FoodOrder {
 		this.name = name;
 	}
 
-	public long getMobileNumber() {
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(long mobileNumber) {
+	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
@@ -57,11 +57,11 @@ public class FoodOrder {
 		this.address = address;
 	}
 
-	public double getTotalPrice() {
+	public Double getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(double totalPrice) {
+	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 

@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 public class Customer {
 	@Id
@@ -20,9 +23,10 @@ public class Customer {
 	private String password;
 	private String address;
 	@Column(unique = true)
-	private long mobileNumber;
+	private Long mobileNumber;
 
 	@OneToMany
+	@Cascade(CascadeType.ALL)
 	private List<FoodOrder> orders;
 
 	public int getId() {
@@ -65,11 +69,11 @@ public class Customer {
 		this.address = address;
 	}
 
-	public long getMobileNumber() {
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(long string) {
+	public void setMobileNumber(Long string) {
 		this.mobileNumber = string;
 	}
 

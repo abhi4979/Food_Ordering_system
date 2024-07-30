@@ -56,7 +56,7 @@ public class ProductController {
             }
 
             hotel.getProducts().add(p);
-
+            
             productDao.saveProduct(p);
             hotelDao.updateHotel(hotel);
 

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigClass {
 	@Bean
 	public EntityManagerFactory getEmf() {
-		return Persistence.createEntityManagerFactory("dev");
+		return Persistence.createEntityManagerFactory("Abhisek");
 	}
 
 	@Bean

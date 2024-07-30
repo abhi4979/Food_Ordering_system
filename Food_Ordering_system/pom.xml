@@ -6,7 +6,7 @@
 	<artifactId>Hotel-Management-System</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Hotel-Management-System Maven Webapp</name>
+	<name>Food_Ordering_System Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -49,6 +49,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>Hotel-Management-System</finalName>
+		<finalName>Food_Ordering_System</finalName>
 	</build>
 </project>

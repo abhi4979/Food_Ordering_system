@@ -14,8 +14,16 @@ public class Product {
 	private String type;
 	private double cost;
 	private int discount;
-     
+    private double final_price; 
 	
+	public double getFinal_price() {
+		return final_price;
+	}
+
+	public void setFinal_price(double final_price) {
+		this.final_price = final_price;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -45,8 +53,7 @@ public class Product {
 	}
 
 	public void setCost(double newCost) {
-	    double discountedCost = newCost - ((this.discount * newCost) / 100.0);
-	    this.cost = discountedCost;
+	    this.cost = newCost;
 	}
 
 

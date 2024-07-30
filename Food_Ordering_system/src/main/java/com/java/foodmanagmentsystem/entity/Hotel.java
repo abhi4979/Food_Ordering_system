@@ -23,7 +23,7 @@ public class Hotel {
 	private String email;
 	private String password;
 	@Column(unique = true)
-	private long m_number;
+	private Long m_number;
 	private String status;
 	
 	private String address;
@@ -75,11 +75,11 @@ public class Hotel {
 		this.password = password;
 	}
 
-	public long getM_number() {
+	public Long getM_number() {
 		return m_number;
 	}
 
-	public void setM_number(long m_number) {
+	public void setM_number(Long m_number) {
 		this.m_number = m_number;
 	}
 
